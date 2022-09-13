@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        galaxy: "url('/background-galaxy.svg')",
+        galaxy: "url('/background-galaxy.png')",
       },
     },
   },
