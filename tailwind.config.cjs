@@ -4,9 +4,15 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        galaxy: "url('/background-galaxy.png')",
+        galaxy: "url('galaxy.png')",
+        'nlw-gradient':
+          'linear-gradient(89.86deg, #9572FC 8.76%, #43e7ad 88%, #E1D55D 2%)',
       },
     },
   },
   plugins: [],
 };
+
+/**background: linear-gradient(89.86deg, #9572FC 23.08%, #43E7AD 33.94%, #E1D55D 44.57%),
+linear-gradient(0deg, #FFFFFF, #FFFFFF);
+ */
