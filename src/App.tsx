@@ -14,7 +14,7 @@ function App() {
       </h1>
       <div className="grid grid-cols-6 gap-6">
         <a href="/">
-          <img src="/image3.png " alt="" />
+          <img src="/image1.png " alt="" />
         </a>
       </div>
     </div>
