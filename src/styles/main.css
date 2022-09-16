@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* Tira o relogio do input time e centraliza os numeros */
 @layer utilities {
   input[type='time'] {
     text-align: center;
