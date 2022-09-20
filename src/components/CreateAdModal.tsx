@@ -31,7 +31,7 @@ const StyledTrigger = styled(Select.SelectTrigger, {
   boxShadow: `0 2px 10px ${blackA.blackA7}`,
   '&:hover': { backgroundColor: mauve.mauve3 },
   '&:focus': { boxShadow: `0 0 0 2px black` },
-  '&[data-placeholder]': { color: violet.violet9 },
+  // '&[data-placeholder]': { color: violet.violet9 },
 });
 
 const StyledIcon = styled(Select.SelectIcon, {
@@ -201,9 +201,9 @@ export function CreateAdModal() {
               <label htmlFor="game" className="font-semibold">
                 Qual o Game?
               </label>
-
-              <Xelect>
-                <SelectTrigger aria-label="Games">
+              <SelectInput games={games} />
+              {/* <Xelect>
+                <SelectTrigger className="test" aria-label="Games">
                   <SelectValue placeholder="Selecione o game que deseja jogar" />
                   <SelectIcon>
                     <ChevronDownIcon />
@@ -234,7 +234,7 @@ export function CreateAdModal() {
                     <ChevronDownIcon />
                   </SelectScrollDownButton>
                 </SelectContent>
-              </Xelect>
+              </Xelect> */}
 
               {/* <select
                 id="game"

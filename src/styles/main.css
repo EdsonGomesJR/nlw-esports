@@ -10,4 +10,18 @@
     display: none;
     background: none;
   }
+
+  .select-trigger[data-placeholder] {
+    color: #71717a;
+  }
+
+  .select-item[data-highlighted] {
+    background-color: #8b5cf6;
+    color: #ffff;
+  }
+
+  .select-item[data-disabled] {
+    color: #71717a;
+    pointer-events: none;
+  }
 }

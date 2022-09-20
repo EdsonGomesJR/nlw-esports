@@ -8,94 +8,13 @@ import {
 } from '@radix-ui/react-icons';
 import * as SelectPrimitive from '@radix-ui/react-select';
 
-const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
-  all: 'unset',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 4,
-  padding: '0 15px',
-  fontSize: 13,
-  lineHeight: 1,
-  height: 35,
-  gap: 5,
-  backgroundColor: 'white',
-  color: violet.violet11,
-  boxShadow: `0 2px 10px ${blackA.blackA7}`,
-  '&:hover': { backgroundColor: mauve.mauve3 },
-  '&:focus': { boxShadow: `0 0 0 2px black` },
-  '&[data-placeholder]': { color: violet.violet9 },
-});
-
-const StyledIcon = styled(SelectPrimitive.SelectIcon, {
-  color: violet.violet11,
-});
-
-const StyledContent = styled(SelectPrimitive.Content, {
-  overflow: 'hidden',
-  backgroundColor: 'white',
-  borderRadius: 6,
-  boxShadow:
-    '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
-});
-
-const StyledViewport = styled(SelectPrimitive.Viewport, {
-  padding: 5,
-});
-
-function Content({ children, ...props }) {
-  return (
-    <SelectPrimitive.Portal>
-      <StyledContent {...props}>{children}</StyledContent>
-    </SelectPrimitive.Portal>
-  );
+interface SelectInputProps {
+  games: Array<Games>;
 }
-
-const StyledItem = styled(SelectPrimitive.Item, {
-  all: 'unset',
-  fontSize: 13,
-  lineHeight: 1,
-  color: violet.violet11,
-  borderRadius: 3,
-  display: 'flex',
-  alignItems: 'center',
-  height: 25,
-  padding: '0 35px 0 25px',
-  position: 'relative',
-  userSelect: 'none',
-
-  '&[data-disabled]': {
-    color: mauve.mauve8,
-    pointerEvents: 'none',
-  },
-
-  '&[data-highlighted]': {
-    backgroundColor: violet.violet9,
-    color: violet.violet1,
-  },
-});
-
-const StyledLabel = styled(SelectPrimitive.Label, {
-  padding: '0 25px',
-  fontSize: 12,
-  lineHeight: '25px',
-  color: mauve.mauve11,
-});
-
-const StyledSeparator = styled(SelectPrimitive.Separator, {
-  height: 1,
-  backgroundColor: violet.violet6,
-  margin: 5,
-});
-
-const StyledItemIndicator = styled(SelectPrimitive.ItemIndicator, {
-  position: 'absolute',
-  left: 0,
-  width: 25,
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
+interface Games {
+  id: string;
+  title: string;
+}
 
 const scrollButtonStyles = {
   display: 'flex',
@@ -118,78 +37,59 @@ const StyledScrollDownButton = styled(
 );
 
 // Exports
-export const Select = SelectPrimitive.Root;
-export const SelectTrigger = StyledTrigger;
-export const SelectValue = SelectPrimitive.Value;
-export const SelectIcon = StyledIcon;
-export const SelectContent = Content;
-export const SelectViewport = StyledViewport;
-export const SelectGroup = SelectPrimitive.Group;
-export const SelectItem = StyledItem;
-export const SelectItemText = SelectPrimitive.ItemText;
-export const SelectItemIndicator = StyledItemIndicator;
-export const SelectLabel = StyledLabel;
-export const SelectSeparator = StyledSeparator;
+
 export const SelectScrollUpButton = StyledScrollUpButton;
 export const SelectScrollDownButton = StyledScrollDownButton;
 
-// Your app...
-const Box = styled('div', {});
-
-export function SelectInput() {
+export function SelectInput(props: SelectInputProps) {
   return (
-    <div>
-      <Select>
-        <SelectTrigger aria-label="Games">
-          <SelectValue placeholder="Selecione o game que deseja jogar" />
-          <SelectIcon>
-            <ChevronDownIcon />
-          </SelectIcon>
-        </SelectTrigger>
-        <SelectContent>
+    <SelectPrimitive.Root>
+      <SelectPrimitive.SelectTrigger
+        className="select-trigger flex items-center bg-zinc-900 justify-between py-3 px-3 rounded text-sm  hover:font-semibold transition-all "
+        aria-label="Games"
+      >
+        <SelectPrimitive.Value placeholder="Selecione o game que deseja jogar" />
+        <SelectPrimitive.SelectIcon>
+          <ChevronDownIcon height={20} width={20} />
+        </SelectPrimitive.SelectIcon>
+      </SelectPrimitive.SelectTrigger>
+
+      <SelectPrimitive.Portal>
+        <SelectPrimitive.Content className="bg-white overflow-hidden rounded">
           <SelectScrollUpButton>
             <ChevronUpIcon />
           </SelectScrollUpButton>
-          <SelectViewport>
-            <SelectGroup>
-              <SelectLabel>Selecione o game que deseja jogar</SelectLabel>
-              <SelectItem value="apple">
-                <SelectItemText>Apple</SelectItemText>
-                <SelectItemIndicator>
-                  <CheckIcon />
-                </SelectItemIndicator>
-              </SelectItem>
-              <SelectItem value="banana">
-                <SelectItemText>Banana</SelectItemText>
-                <SelectItemIndicator>
-                  <CheckIcon />
-                </SelectItemIndicator>
-              </SelectItem>
-              <SelectItem value="blueberry">
-                <SelectItemText>Blueberry</SelectItemText>
-                <SelectItemIndicator>
-                  <CheckIcon />
-                </SelectItemIndicator>
-              </SelectItem>
-              <SelectItem value="grapes">
-                <SelectItemText>Grapes</SelectItemText>
-                <SelectItemIndicator>
-                  <CheckIcon />
-                </SelectItemIndicator>
-              </SelectItem>
-              <SelectItem value="pineapple">
-                <SelectItemText>Pineapple</SelectItemText>
-                <SelectItemIndicator>
-                  <CheckIcon />
-                </SelectItemIndicator>
-              </SelectItem>
-            </SelectGroup>
-          </SelectViewport>
+          <SelectPrimitive.Viewport className="p-[2px] bg-zinc-600 ">
+            <SelectPrimitive.Group className="bg-zinc-900 ">
+              <SelectPrimitive.Label className=" px-[25px] py-[0.5px] text-sm border-b  leading-[25px] text-zinc-500 border-zinc-100/20">
+                Selecione o game que deseja jogar
+              </SelectPrimitive.Label>
+              {props.games.map((game) => {
+                return (
+                  <SelectPrimitive.Item
+                    className="
+                    select-item select-none rounded-sm text-md
+                    text-zinc-300 flex items-center h-[25px] pr-[35px] pl-[25px]
+                      relative "
+                    key={game.id}
+                    value={game.title}
+                  >
+                    <SelectPrimitive.ItemText className="">
+                      {game.title}
+                    </SelectPrimitive.ItemText>
+                    <SelectPrimitive.ItemIndicator className="absolute left-0 w-[25px] inline-flex items-center justify-center">
+                      <CheckIcon />
+                    </SelectPrimitive.ItemIndicator>
+                  </SelectPrimitive.Item>
+                );
+              })}
+            </SelectPrimitive.Group>
+          </SelectPrimitive.Viewport>
           <SelectScrollDownButton>
             <ChevronDownIcon />
           </SelectScrollDownButton>
-        </SelectContent>
-      </Select>
-    </div>
+        </SelectPrimitive.Content>
+      </SelectPrimitive.Portal>
+    </SelectPrimitive.Root>
   );
 }
