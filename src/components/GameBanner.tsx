@@ -1,21 +1,25 @@
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { createContext, useContext, useState } from 'react';
+
+import { BrowserRouter as Router, Route, Routes, Link, NavLink } from 'react-router-dom';
+
 import { AdsPage } from './AdsPage';
 
 interface GameBannerProps {
+  id: string
   bannerUrl: string;
   title: string;
   adsCount: number;
 }
 
-function handleClickCard(title: string) {
-  console.log('cliquei: ', title);
-}
 
 export function GameBanner(props: GameBannerProps) {
+  const pathTitle = props.title.replace(/\s/g, '').toLowerCase();
+
+
   return (
-    <Link
-      onClick={() => handleClickCard(props.title)}
-      to="/navbar"
+    <NavLink
+    to={`/games/${props.id}/ads`}
+  
       className="relative rounded-lg overflow-hidden"
     >
       <img src={props.bannerUrl} alt="" />
@@ -25,6 +29,7 @@ export function GameBanner(props: GameBannerProps) {
           {props.adsCount} {props.adsCount <= 1 ? 'anúncio' : 'anúncios'}
         </span>
       </div>
-    </Link>
+    </NavLink>
+
   );
 }
